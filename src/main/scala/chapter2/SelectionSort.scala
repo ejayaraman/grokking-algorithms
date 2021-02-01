@@ -7,7 +7,7 @@ object SelectionSort {
 
   def sort(unsortedArray: Array[Int]): Array[Int] = {
 
-    var sortedArray = new ArrayBuffer[Int]()
+    val sortedArray = new ArrayBuffer[Int]()
 
     @tailrec
     def recurse(unsortedArray: Array[Int]): Array[Int] =
