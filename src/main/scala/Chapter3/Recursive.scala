@@ -2,12 +2,11 @@ package Chapter3
 
 object Recursive {
 
-  def sum(list: List[Int]): Int = {
+  def sum(list: List[Int]): Int =
     list match {
-      case Nil => 0
+      case Nil          => 0
       case head :: tail => head + sum(tail)
     }
-  }
 
   def count(list: List[Int]): Int =
     list match {
