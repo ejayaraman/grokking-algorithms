@@ -29,4 +29,24 @@ class RecursiveSpec extends AnyFlatSpec with Matchers {
   it should "return the correct count value of a list with single element" in {
     Recursive.count(List(3)) shouldBe 1
   }
+
+  "Recursive max function" should "return the correct max value" in {
+    Recursive.max(List(1, 3, 2)) shouldBe 3
+  }
+
+  "Recursive max function" should "return the correct max value for a longer list" in {
+    Recursive.max(List(1, 3, 2, 4, 5, 7, 6, 9, -1)) shouldBe 9
+  }
+
+  "Recursive max function" should "return 0 for empty list" in {
+    Recursive.max(List()) shouldBe 0
+  }
+
+  "Recursive max function" should "return the same value for list with one item" in {
+    Recursive.max(List(1)) shouldBe 0
+  }
+
+  "Recursive max function" should "return the correct max value when duplicate entries exist" in {
+    Recursive.max(List(1, 3, 2, 4, 5, 7, 6, 9, -1, 9, 2)) shouldBe 9
+  }
 }
