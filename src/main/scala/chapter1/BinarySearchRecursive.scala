@@ -21,11 +21,7 @@ object BinarySearchRecursive {
         -1
       }
     }
-
-    if (sortedList(begin) == searchElement) {
-      begin
-    } else
-      searchRecursive(begin, end)
+    searchRecursive(begin, end)
   }
 
 }
