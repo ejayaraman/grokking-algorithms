@@ -16,4 +16,15 @@ class DijkstraSpec extends AnyFlatSpec with Matchers {
 
     Dijkstra(graph) shouldBe 6
   }
+
+  "Dijkstra" should "return the shortest path as 2" in {
+    val startNeighbours = Map[String, Double]("a"   -> 1, "b" -> 2)
+    val aNeighbours     = Map[String, Double]("fin" -> 1)
+    val bNeighbours     = Map[String, Double]("a"   -> 3, "fin" -> 5)
+
+    val graph: Map[String, Map[String, Double]] =
+      Map("start" -> startNeighbours, "a" -> aNeighbours, "b" -> bNeighbours)
+
+    Dijkstra(graph) shouldBe 2
+  }
 }
