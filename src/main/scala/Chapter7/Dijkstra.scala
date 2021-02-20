@@ -6,7 +6,7 @@ import scala.collection.mutable
 //Second Iteration
 object Dijkstra {
   def apply(graph: Map[String, List[Node]]): Int = {
-    val costs: List[Node]                    = graph("start") ++ List(Node("fin", Double.PositiveInfinity))
+    val costs: List[Node]                    = graph("start") ++ List(Node("final", Double.PositiveInfinity.toInt))
     val parents: mutable.Map[String, String] = mutable.Map[String, String]()
     graph("start").foreach { value =>
       parents.addOne(value.name -> "start")
@@ -21,7 +21,7 @@ object Dijkstra {
       }
 
       lowestCostNode match {
-        case Some(node) => {
+        case Some(node) =>
           val neighbours: Option[List[Node]] = graph.get(node.name)
           neighbours.foreach { neighbour =>
             neighbour.foreach { n =>
@@ -35,11 +35,9 @@ object Dijkstra {
             }
           }
           recurse(node.name :: processedNodes)
-        }
-        case None => costs.find(_.name == "fin").get.edge.toInt
+        case None => costs.find(_.name == "final").get.edge
       }
     }
-
     recurse(List.empty)
   }
 }
