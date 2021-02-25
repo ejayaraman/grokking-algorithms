@@ -16,7 +16,7 @@ class FindStationsSpec extends AnyFlatSpec with Matchers {
 
     val stations = List(one, two, three, four, five)
 
-    new FindStations().stations(stations, statesNeeded) shouldBe Set("two", "three", "one", "five")
+    new FindStations(stations, statesNeeded).stations shouldBe Set("two", "three", "one", "five")
   }
 
   "FindStations" should "find the approximate stations covering the required states" in {
@@ -29,7 +29,7 @@ class FindStationsSpec extends AnyFlatSpec with Matchers {
 
     val stations = List(one, two, three, four, five)
 
-    new FindStations().stations(stations, statesNeeded) shouldBe Set("two", "three", "one", "five")
+    new FindStations(stations, statesNeeded).stations shouldBe Set("two", "three", "one", "five")
   }
 
   "FindStations" should "find the stations covering just the required states" in {
@@ -42,6 +42,6 @@ class FindStationsSpec extends AnyFlatSpec with Matchers {
 
     val stations = List(one, two, three, four, five)
 
-    new FindStations().stations(stations, statesNeeded) shouldBe Set("two", "three")
+    new FindStations(stations, statesNeeded).stations shouldBe Set("two", "three")
   }
 }
