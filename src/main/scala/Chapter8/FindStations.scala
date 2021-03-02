@@ -2,6 +2,7 @@ package Chapter8
 
 import scala.collection.mutable
 
+//TODO: Can this be simplified with for comprehension?
 class FindStations(availableStations: List[Station], statesNeeded: Set[String]) {
 
   private val foundStates: mutable.Set[String]   = collection.mutable.Set[String]()
