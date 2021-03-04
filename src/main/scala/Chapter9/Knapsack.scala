@@ -18,8 +18,6 @@ object Knapsack {
       } else {
         if (item.weight == sackSize && item.value > table(index - 1)(sackSize))
           item.value
-        else if (item.weight > sackSize)
-          table(index - 1)(size)
         else if (item.weight < sackSize && (item.value + table(index - 1)(size - item.weight) > table(index - 1)(size)))
           item.value + table(index - 1)(size - item.weight)
         else
