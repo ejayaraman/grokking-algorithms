@@ -1,29 +1,35 @@
 package Chapter9
 
-//Second Iteration
+//Third Iteration
 object Knapsack {
   def apply(items: List[Item], knapsackSize: Int): Int = {
     val table: Array[Array[Int]] = Array.ofDim[Int](items.size, knapsackSize)
 
     for {
-      (item, index) <- items.zipWithIndex
-      size          <- 0 until knapsackSize
+      (item, itemIndex) <- items.zipWithIndex
+      knapsackIndex     <- 0 until knapsackSize
     } {
-      val sackSize = size + 1
-      table(index)(size) = if (index == 0) {
+      val sackSize       = knapsackIndex + 1
+      val thisItemValue  = item.value
+      val thisItemWeight = item.weight
+
+      table(itemIndex)(knapsackIndex) = if (itemIndex == 0) {
         if (item.weight <= sackSize)
-          item.value
+          thisItemValue
         else
           0
       } else {
-        if (item.weight == sackSize && item.value > table(index - 1)(sackSize))
+        val currentValue                 = table(itemIndex - 1)(knapsackIndex)
+        lazy val valueForRemainingWeight = table(itemIndex - 1)(knapsackIndex - item.weight)
+
+        if (thisItemWeight == sackSize && thisItemValue > currentValue)
           item.value
-        else if (item.weight < sackSize && (item.value + table(index - 1)(size - item.weight) > table(index - 1)(size)))
-          item.value + table(index - 1)(size - item.weight)
+        else if (thisItemWeight < sackSize && (thisItemValue + valueForRemainingWeight > currentValue))
+          thisItemValue + valueForRemainingWeight
         else
-          table(index - 1)(size)
+          currentValue
       }
-      println(index, size, item.name, item.weight, item.value, table(index)(size))
+      println(itemIndex, knapsackIndex, item.name, item.weight, item.value, table(itemIndex)(knapsackIndex))
     }
     table(items.size - 1)(knapsackSize - 1)
   }
