@@ -12,12 +12,13 @@ object Knapsack {
       val sackSize       = knapsackIndex + 1
       val thisItemValue  = item.value
       val thisItemWeight = item.weight
+      val noValue        = 0
 
       table(itemIndex)(knapsackIndex) = if (itemIndex == 0) {
-        if (item.weight <= sackSize)
+        if (thisItemWeight <= sackSize)
           thisItemValue
         else
-          0
+          noValue
       } else {
         val currentValue                 = table(itemIndex - 1)(knapsackIndex)
         lazy val valueForRemainingWeight = table(itemIndex - 1)(knapsackIndex - item.weight)
